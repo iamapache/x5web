@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 33
     defaultConfig {
         applicationId "me.bzcoder.easywebview.sample"
         minSdkVersion 18
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode 6
         versionName "2.6.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -14,10 +14,27 @@ android {
             abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
         }
     }
+    signingConfigs {
+        debug {
+            storeFile file('mvolabp.jks')
+            keyAlias 'mvolabp'
+            storePassword '456789'
+            keyPassword '456789'
+        }
+        release {
+            v1SigningEnabled true
+            v2SigningEnabled true
+            storeFile file('mvolabp.jks')
+            storePassword "456789"
+            keyAlias "mvolabp"
+            keyPassword "456789"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
@@ -26,22 +43,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
     }
 
-    // 其他 webview
-    signingConfigs {
-        release {
-            storeFile file("./webview")
-            storePassword "webview2018"
-            keyAlias "webview"
-            keyPassword "webview2018"
-        }
-        debug {
-            storeFile file("./webview")
-            storePassword "webview2018"
-            keyAlias "webview"
-            keyPassword "webview2018"
-        }
-    }
+
     namespace 'com.bzcoder.webview.sample'
+    packagingOptions {
+        //排除法
+        exclude 'META-INF/androidx.exifinterface_exifinterface.version'
+    }
 }
 
 dependencies {

@@ -1,13 +1,7 @@
 package me.bzcoder.webview.tencentx5;
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -20,8 +14,12 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import cc.shinichi.library.ImagePreview;
-import cc.shinichi.library.view.listener.OnOriginProgressListener;
 import me.bzcoder.easywebview.rich.RichJavascriptInterface;
 import me.bzcoder.easywebview.rich.RichWebView;
 
@@ -143,25 +141,25 @@ public class RichWebViewActivity extends AppCompatActivity {
                 .setShowCloseButton(false)
                 .setShowDownButton(true)
                 .setShowIndicator(true)
-                // 设置失败时的占位图，默认为库中自带R.drawable.load_failed，设置为 0 时不显示
-                .setErrorPlaceHolder(R.drawable.load_failed)
-                // 设置查看原图时的百分比样式：库中带有一个样式：ImagePreview.PROGRESS_THEME_CIRCLE_TEXT，使用如下：
-                .setProgressLayoutId(ImagePreview.PROGRESS_THEME_CIRCLE_TEXT, new OnOriginProgressListener() {
-                    @Override
-                    public void progress(View parentView, int progress) {
-                        // 需要找到进度控件并设置百分比，回调中的parentView即传入的布局的根View，可通过parentView找到控件：
-                        ProgressBar progressBar = parentView.findViewById(R.id.sh_progress_view);
-                        TextView textView = parentView.findViewById(R.id.sh_progress_text);
-                        progressBar.setProgress(progress);
-                        String progressText = progress + "%";
-                        textView.setText(progressText);
-                    }
-
-                    @Override
-                    public void finish(View parentView) {
-
-                    }
-                })
+//                // 设置失败时的占位图，默认为库中自带R.drawable.load_failed，设置为 0 时不显示
+//                .setErrorPlaceHolder(R.drawable.load_failed)
+//                // 设置查看原图时的百分比样式：库中带有一个样式：ImagePreview.PROGRESS_THEME_CIRCLE_TEXT，使用如下：
+//                .setProgressLayoutId(ImagePreview.PROGRESS_THEME_CIRCLE_TEXT, new OnOriginProgressListener() {
+//                    @Override
+//                    public void progress(View parentView, int progress) {
+//                        // 需要找到进度控件并设置百分比，回调中的parentView即传入的布局的根View，可通过parentView找到控件：
+//                        ProgressBar progressBar = parentView.findViewById(R.id.sh_progress_view);
+//                        TextView textView = parentView.findViewById(R.id.sh_progress_text);
+//                        progressBar.setProgress(progress);
+//                        String progressText = progress + "%";
+//                        textView.setText(progressText);
+//                    }
+//
+//                    @Override
+//                    public void finish(View parentView) {
+//
+//                    }
+//                })
                 .start();
     }
 
